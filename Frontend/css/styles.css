@@ -1,0 +1,54 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,700;1,400&family=Roboto:wght@100;300;500;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans";
+}
+
+a, a:hover {
+    text-decoration: none;
+    color: unset;
+}
+
+html, body {
+   background-color: #E8E8E8;
+  }
+
+header {
+    background-color: #FFE500;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    border: 1px solid blue;
+}
+
+nav {
+    border: 1px solid red ;
+    color: #636363;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.carrinho{
+    text-align: right;
+    padding-left: 712px;
+}
+
+#card-details {
+    margin-top: 12px;
+}
+
+.card {
+    background-color: #fff;
+}
+
