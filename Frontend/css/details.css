@@ -16,17 +16,17 @@
   }
   
   .product-details-bottom h3 {
-    color: #0caf1d;
+    color: var(--dsc-color-bg-quaternary);
     font-size: 20px;
   }
   
   .product-details-bottom h4 {
-    color: #636363;
+    color: var(--dsc-color-font-primary);
     font-size: 14px;
   }
   
   .product-details-bottom p {
-    color: #636363;
+    color: var(--dsc-color-font-primary);
     font-size: 12px;
     margin: 10px 0;
     font-weight: 400;
@@ -37,9 +37,9 @@
   }
   
   .card-category {
-    background-color: #636363;
+    background-color: var(--dsc-color-font-primary);
     border-radius: 4px;
-    color: #fff;
+    color: var(--dsc-color-card-bg);
     font-size: 12px;
     height: 30px;
     font-weight: 700;
