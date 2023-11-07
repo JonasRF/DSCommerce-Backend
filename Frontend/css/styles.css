@@ -37,7 +37,8 @@ html,
 body {
   background-color: var(--dsc-color-bg-primary);
 }
-
+/*------------------------------------------------*/
+/*header styles*/
 header {
   background-color: var(--dsc-color-bg-secondary);
   height: 70px;
@@ -52,12 +53,29 @@ nav {
   align-items: center;
 }
 
+nav h1 {
+  font-size: 24px;
+}
+
+nav a {
+  font-size: 14px;
+  font-weight: 700;
+}
+/*----------------------------------------------*/
+/*generic styles-*/
+
 .dsc-container {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
 }
 
+.dsc-mb20 {
+  margin-bottom: 20px;
+}
+/*---------------------------------------------*/
+
+/*card styles*/
 .dsc-carrinho {
   text-align: right;
   padding-left: 712px;
@@ -79,10 +97,8 @@ nav {
   border-bottom: 1px solid var(--dsc-color-font-placeholder);
 }
 
-.dsc-mb20 {
-  margin-bottom: 20px;
-}
-
+/*----------------------------------*/
+/*button styles*/
 .dsc-btn-container {
   width: 220px;
 }
@@ -107,3 +123,4 @@ nav {
   background-color: var(--dsc-color-btn-inverse);
   color: var(--dsc-color-btn-primary);
 }
+/*---------------------------------------------*/
