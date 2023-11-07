@@ -52,13 +52,13 @@ nav {
   align-items: center;
 }
 
-.container {
+.dsc-container {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
 }
 
-.carrinho {
+.dsc-carrinho {
   text-align: right;
   padding-left: 712px;
 }
@@ -67,23 +67,23 @@ nav {
   margin-top: 12px;
 }
 
-.card {
+.dsc-card {
   background-color: var(--dsc-color-card-bg);
   border-radius: 4px;
   border: 1px solid var(--dsc-color-font-placeholder);
   margin-bottom: 20px;
 }
 
-.line-bottom {
+.dsc-line-bottom {
   padding: 10px;
   border-bottom: 1px solid var(--dsc-color-font-placeholder);
 }
 
-.mb20 {
+.dsc-mb20 {
   margin-bottom: 20px;
 }
 
-.btn-container {
+.dsc-btn-container {
   width: 220px;
 }
 
@@ -98,12 +98,12 @@ nav {
   margin-bottom: 20px;
 }
 
-.btn-blue {
+.dsc-btn-blue {
   background-color: var(--dsc-color-btn-primary);
   color: var(--dsc-color-btn-inverse);
 }
 
-.btn-white {
+.dsc-btn-white {
   background-color: var(--dsc-color-btn-inverse);
   color: var(--dsc-color-btn-primary);
 }
