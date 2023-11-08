@@ -60,7 +60,7 @@
 .dsc-cart-item-right {
   padding: 10px 0;
   font-weight: 700;
-  color: var( --dsc-color-font-secondary);
+  color: var(--dsc-color-font-secondary);
   font-size: 12px;
 }
 
@@ -71,6 +71,6 @@
 }
 
 .dsc-cart-total-container h3 {
-  color: var( --dsc-color-font-secondary);
+  color: var(--dsc-color-font-secondary);
   font-size: 16px;
 }
