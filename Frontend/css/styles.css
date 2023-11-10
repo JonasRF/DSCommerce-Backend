@@ -104,7 +104,6 @@ nav a {
   background-color: var(--dsc-color-card-bg);
   border-radius: 4px;
   border: 1px solid var(--dsc-color-font-placeholder);
-  margin-bottom: 20px;
 }
 
 .dsc-line-bottom {
@@ -154,5 +153,6 @@ nav a {
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
+  margin-top: 20px;
 }
 /*---------------------------------------------*/
