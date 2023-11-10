@@ -3,3 +3,35 @@
 #catalog-section {
   padding: 20px 20px;
 }
+
+.dsc-catalog-cards {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.dsc-catalog-card-top {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.dsc-catalog-card-top img {
+  width: 150px;
+  height: 150px;
+}
+
+.dsc-catalog-card-bottom {
+  padding: 10px 20px 25px;
+  min-height: 110px;
+}
+
+.dsc-catalog-card-bottom h3 {
+  color: var(--dsc-color-font-secondary);
+}
+
+.dsc-catalog-card-bottom h4 {
+  color: var(--dsc-color-bg-tertiary);
+  font-size: 12px;
+  font-weight: 700;
+}
