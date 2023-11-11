@@ -115,6 +115,7 @@ nav a {
 /*button styles*/
 .dsc-btn-container {
   width: 100%;
+  padding: 20px 0;
 }
 
 @media(min-width:576px ){
