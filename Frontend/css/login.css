@@ -20,7 +20,7 @@
 }
 
 @media (min-width: 576px) {
-  #login-section {
-    padding: 0 40px;
+  .dsc-login-form-container {
+    padding: 20px 0;
   }
 }
