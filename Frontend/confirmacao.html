@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DSCommerce</title>
-
+    <link rel="stylesheet" href="./css/cart.css" />
     <link rel="stylesheet" href="./css/confirmacao.css" />
   </head>
   <body>
@@ -16,11 +16,14 @@
           <div class="dsc-menu-item">
             <img src="assets/carrinho.svg" alt="Carrinho de compras" />
           </div>
-          <a href="#">Entrar</a>
+          <div class="dsc-logger-user">
+          <p>Maria Silva</p>
+          <a href="#">Sair</a>
+          </div>
           </div>
       </nav>
     </header>
-    <section id="cart-container-section" class="dsc-container">
+    <section id="confirmation-section" class="dsc-container">
       <div class="dsc-card">
           <div class="dsc-cart-item-container dsc-line-bottom">
             <div class="dsc-cart-item-left">
@@ -62,8 +65,10 @@
         </div>
         </div>
       </div>
+      <div class="dsc-confirmation-message">
+        Pedido realizado! Número 35
+      </div>
       <div class="dsc-btn-container">
-       <h3 class="dsc-confirmacao-pedido">Pedido realizado! Número 35</h3>
         <div class="btn dsc-btn-white">
           Inicio
         </div>
