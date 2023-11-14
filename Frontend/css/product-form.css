@@ -1,0 +1,26 @@
+@import url("styles.css");
+
+#product-form-section {
+  padding: 0 20px;
+}
+
+.dsc-product-form-container {
+  width: 100%;
+  color: var(--dsc-color-font-primary);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.dsc-product-form-button {
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  .dsc-product-form-container {
+    padding: 20px 0;
+  }
+}
