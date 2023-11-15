@@ -4,10 +4,16 @@
   padding: 0 20px;
 }
 
-.dsc-product-form-container {
+.dsc-container {
   width: 100%;
-  color: var(--dsc-color-font-primary);
   max-width: 500px;
+  margin: 0 auto;
+}
+
+.dsc-product-form-container {
+ 
+  color: var(--dsc-color-font-primary);
+  
   margin: 0 auto;
 }
 
@@ -17,10 +23,21 @@
 
 .dsc-product-form-button {
   width: 100%;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
 
 @media (min-width: 576px) {
   .dsc-product-form-container {
     padding: 20px 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .dsc-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
   }
 }
