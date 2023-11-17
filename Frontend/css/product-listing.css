@@ -1,0 +1,15 @@
+@import url("styles.css");
+
+#product-listing-section {
+  padding: 20px 20px;
+}
+
+.dsc-title-listing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--dsc-color-font-primary);
+  font-size: 16px;
+}
+
+
