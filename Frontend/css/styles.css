@@ -101,6 +101,7 @@ nav a {
   display: flex;
   height: 40px;
   color: var(--dsc-color-font-placeholder);
+  margin-bottom: 20px;
 }
 .dsc-search-bar button,
 .dsc-search-bar input {
@@ -310,4 +311,21 @@ nav a {
 
 .dsc-form-control::placeholder {
   color: var(--dsc-color-font-placeholder);
+}
+
+/*---------------------------------------------*/
+/*table styles*/
+
+.dsc-table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.dsc-table thead {
+  background-color: var(--dsc-color-font-tertiary);
+}
+
+.dsc-table tbody {
+  background-color: var(--dsc-color-font-tertiary);
 }
