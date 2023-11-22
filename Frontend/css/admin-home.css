@@ -1,0 +1,17 @@
+@import url("styles.css");
+
+#admin-home-section {
+  padding: 20px 20px;
+}
+
+.dsc-title-listing {
+color: var(--dsc-color-font-primary);
+}
+
+@media (min-width: 576px) {
+  .dsc-title-listing {
+    display: flex;
+    justify-content: left;
+    font-size: 24px;
+  }
+}
