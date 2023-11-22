@@ -70,6 +70,7 @@ nav a {
 .dsc-navbar-right {
   display: flex;
   align-items: center;
+  padding: 20px;
 }
 
 .dsc-menu-itens-container {
