@@ -1,21 +1,20 @@
 package com.devsuperior.DSCommerce.DTO;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.devsuperior.DSCommerce.entities.User;
-import org.springframework.security.core.GrantedAuthority;
 
-public class UserDTO {
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
-    private Long id;
-    private String name;
-    private String email;
-    private String phone;
-    private LocalDate birthDate;
-    private List<String> roles = new ArrayList<>();
-    
+public class UserDTO implements Serializable {
+	private Long id;
+	private String name;
+	private String email;
+	private String phone;
+	private LocalDate birthDate;
+	Set<RoleDTO> roles = new HashSet<>();
+
 	public UserDTO(Long id, String name, String email, String phone, LocalDate birthDate) {
 		this.id = id;
 		this.name = name;
@@ -23,16 +22,18 @@ public class UserDTO {
 		this.phone = phone;
 		this.birthDate = birthDate;
 	}
-    
+
 	public UserDTO(User entity) {
 		id = entity.getId();
 		name = entity.getName();
 		email = entity.getEmail();
 		phone = entity.getPhone();
 		birthDate = entity.getBirthDate();
-		for (GrantedAuthority role : entity.getAuthorities()) {
-			roles.add(role.getAuthority());
-		}
+		entity.getRoles().forEach(role -> this.roles.add(new RoleDTO(role)));
+	}
+
+	public UserDTO() {
+
 	}
 
 	public Long getId() {
@@ -55,7 +56,7 @@ public class UserDTO {
 		return birthDate;
 	}
 
-	public List<String> getRoles() {
+	public Set<RoleDTO> getRoles() {
 		return roles;
 	}
 }

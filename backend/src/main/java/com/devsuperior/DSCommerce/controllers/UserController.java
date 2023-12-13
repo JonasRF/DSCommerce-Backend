@@ -1,13 +1,10 @@
 package com.devsuperior.DSCommerce.controllers;
 
-import com.devsuperior.DSCommerce.DTO.ProductDTO;
 import com.devsuperior.DSCommerce.DTO.UserDTO;
-import com.devsuperior.DSCommerce.services.ProductService;
+import com.devsuperior.DSCommerce.DTO.UserInsertDTO;
 import com.devsuperior.DSCommerce.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -27,5 +24,13 @@ public class UserController {
     public ResponseEntity<UserDTO> getMe() {
         UserDTO dto = service.getMe();
         return ResponseEntity.ok().body(dto);
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @PostMapping
+    public ResponseEntity<UserDTO> insert(@Valid @RequestBody UserInsertDTO dto) {
+        UserDTO userDTO = service.insert(dto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userDTO.getId()).toUri();
+        return ResponseEntity.created(uri).body(userDTO);
     }
 }

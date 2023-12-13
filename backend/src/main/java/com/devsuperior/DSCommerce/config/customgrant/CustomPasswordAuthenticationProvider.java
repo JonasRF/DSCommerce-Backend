@@ -1,25 +1,15 @@
 package com.devsuperior.DSCommerce.config.customgrant;
 
-import java.security.Principal;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.core.AuthorizationGrantType;
-import org.springframework.security.oauth2.core.ClaimAccessor;
-import org.springframework.security.oauth2.core.OAuth2AccessToken;
-import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
-import org.springframework.security.oauth2.core.OAuth2Error;
-import org.springframework.security.oauth2.core.OAuth2ErrorCodes;
-import org.springframework.security.oauth2.core.OAuth2Token;
+import org.springframework.security.oauth2.core.*;
 import org.springframework.security.oauth2.server.authorization.OAuth2Authorization;
 import org.springframework.security.oauth2.server.authorization.OAuth2AuthorizationService;
 import org.springframework.security.oauth2.server.authorization.OAuth2TokenType;
@@ -32,6 +22,10 @@ import org.springframework.security.oauth2.server.authorization.token.OAuth2Toke
 import org.springframework.security.oauth2.server.authorization.token.OAuth2TokenGenerator;
 import org.springframework.util.Assert;
 
+import java.security.Principal;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 public class CustomPasswordAuthenticationProvider implements AuthenticationProvider {
 
 	private static final String ERROR_URI = "https://datatracker.ietf.org/doc/html/rfc6749#section-5.2";
@@ -39,9 +33,6 @@ public class CustomPasswordAuthenticationProvider implements AuthenticationProvi
 	private final UserDetailsService userDetailsService;
 	private final OAuth2TokenGenerator<? extends OAuth2Token> tokenGenerator;
 	private final PasswordEncoder passwordEncoder;
-	private String username = "";
-	private String password = "";
-	private Set<String> authorizedScopes = new HashSet<>();
 
 	public CustomPasswordAuthenticationProvider(OAuth2AuthorizationService authorizationService,
 			OAuth2TokenGenerator<? extends OAuth2Token> tokenGenerator, 
@@ -63,8 +54,8 @@ public class CustomPasswordAuthenticationProvider implements AuthenticationProvi
 		CustomPasswordAuthenticationToken customPasswordAuthenticationToken = (CustomPasswordAuthenticationToken) authentication;
 		OAuth2ClientAuthenticationToken clientPrincipal = getAuthenticatedClientElseThrowInvalidClient(customPasswordAuthenticationToken);
 		RegisteredClient registeredClient = clientPrincipal.getRegisteredClient();
-		username = customPasswordAuthenticationToken.getUsername();
-		password = customPasswordAuthenticationToken.getPassword();	
+		String username = customPasswordAuthenticationToken.getUsername();
+		String password = customPasswordAuthenticationToken.getPassword();
 		
 		UserDetails user = null;
 		try {
@@ -76,10 +67,13 @@ public class CustomPasswordAuthenticationProvider implements AuthenticationProvi
 		if (!passwordEncoder.matches(password, user.getPassword()) || !user.getUsername().equals(username)) {
 			throw new OAuth2AuthenticationException("Invalid credentials");
 		}
-		
-		authorizedScopes = user.getAuthorities().stream()
-				.map(scope -> scope.getAuthority())
-				.filter(scope -> registeredClient.getScopes().contains(scope))
+
+		Set<String> authorizedScopes = user.getAuthorities().stream()
+				.map(GrantedAuthority::getAuthority)
+				.filter(scope -> {
+					assert registeredClient != null;
+					return registeredClient.getScopes().contains(scope);
+				})
 				.collect(Collectors.toSet());
 		
 		//-----------Create a new Security Context Holder Context----------
@@ -99,8 +93,9 @@ public class CustomPasswordAuthenticationProvider implements AuthenticationProvi
 				.authorizedScopes(authorizedScopes)
 				.authorizationGrantType(new AuthorizationGrantType("password"))
 				.authorizationGrant(customPasswordAuthenticationToken);
-		
-		OAuth2Authorization.Builder authorizationBuilder = OAuth2Authorization.withRegisteredClient(registeredClient)
+
+        assert registeredClient != null;
+        OAuth2Authorization.Builder authorizationBuilder = OAuth2Authorization.withRegisteredClient(registeredClient)
 				.attribute(Principal.class.getName(), clientPrincipal)
 				.principalName(clientPrincipal.getName())
 				.authorizationGrantType(new AuthorizationGrantType("password"))
