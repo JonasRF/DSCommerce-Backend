@@ -52,7 +52,6 @@ public class UserService implements UserDetailsService {
     }
 
     protected User authenticated() {
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Jwt jwtPrincipal = (Jwt) authentication.getPrincipal();
         String username = jwtPrincipal.getClaim("username");
@@ -76,6 +75,9 @@ public class UserService implements UserDetailsService {
     public UserDTO insert(UserInsertDTO dto) {
         User entity = new User();
         copyDtoToEntity (dto, entity);
+        entity.getRoles().clear();
+        Role role = roleRepository.findByAuthority("ROLE_CLIENT");
+        entity.getRoles().add(role);
         entity.setPassword(passwordEncoder.encode(dto.getPassword()));
         entity = repository.save(entity);
         return new UserDTO(entity);

@@ -1,6 +1,8 @@
 package com.devsuperior.DSCommerce.DTO;
 
 import com.devsuperior.DSCommerce.entities.User;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -9,7 +11,9 @@ import java.util.Set;
 
 public class UserDTO implements Serializable {
 	private Long id;
+	@NotBlank(message = "Campo obrigatorio")
 	private String name;
+	@Email(message = "Favor colocar um email valido")
 	private String email;
 	private String phone;
 	private LocalDate birthDate;
@@ -33,7 +37,6 @@ public class UserDTO implements Serializable {
 	}
 
 	public UserDTO() {
-
 	}
 
 	public Long getId() {

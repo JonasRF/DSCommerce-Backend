@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class UserInsertValidator implements ConstraintValidator<UserInsertValid, UserInsertDTO> {
-
     @Autowired
     private UserRepository repository;
     @Override
