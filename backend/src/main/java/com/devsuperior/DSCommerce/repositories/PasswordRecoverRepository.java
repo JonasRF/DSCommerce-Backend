@@ -1,8 +1,7 @@
 package com.devsuperior.DSCommerce.repositories;
 
-import com.devsuperior.DSCommerce.entities.Role;
+import com.devsuperior.DSCommerce.entities.PasswordEncoder;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RoleRepository extends JpaRepository<Role, Long> {
-    Role  findByAuthority(String authority);
+public interface PasswordRecoverRepository extends JpaRepository<PasswordEncoder, Long> {
 }

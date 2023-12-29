@@ -1,14 +1,12 @@
-package com.devsuperior.demo.services;
+package com.devsuperior.DSCommerce.services;
 
+import com.devsuperior.DSCommerce.services.exceptions.EmailException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-
-import com.devsuperior.demo.dto.EmailDTO;
-import com.devsuperior.demo.services.exceptions.EmailException;
 
 @Service
 public class EmailService {
@@ -19,13 +17,13 @@ public class EmailService {
     @Autowired
     private JavaMailSender emailSender;
 
-    public void sendEmail(EmailDTO obj) {
+    public void sendEmail(String to, String subject, String body) {
         try{
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom(emailFrom);
-            message.setTo(obj.getTo());
-            message.setSubject(obj.getSubject());
-            message.setText(obj.getBody());
+            message.setTo(to);
+            message.setSubject(subject);
+            message.setText(body);
             emailSender.send(message);
         } 
         catch (MailException e){

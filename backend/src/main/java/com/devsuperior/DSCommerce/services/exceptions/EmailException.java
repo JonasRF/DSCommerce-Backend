@@ -1,4 +1,4 @@
-package com.devsuperior.demo.services.exceptions;
+package com.devsuperior.DSCommerce.services.exceptions;
 
 @SuppressWarnings("serial")
 public class EmailException extends RuntimeException {
