@@ -3,6 +3,7 @@ package com.devsuperior.DSCommerce.controllers.handlers;
 import com.devsuperior.DSCommerce.DTO.CustomError;
 import com.devsuperior.DSCommerce.DTO.ValidationError;
 import com.devsuperior.DSCommerce.services.exceptions.DataBaseException;
+import com.devsuperior.DSCommerce.services.exceptions.EmailException;
 import com.devsuperior.DSCommerce.services.exceptions.ForbiddenException;
 import com.devsuperior.DSCommerce.services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,6 +32,14 @@ public class ControllerExceptionHandler {
         CustomError err = new CustomError(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(err);
     }
+
+    @ExceptionHandler(EmailException.class)
+    public ResponseEntity<CustomError> customName(EmailException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        CustomError err = new CustomError(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(err);
+    }
+
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<CustomError> methodArgumentNotValidException(MethodArgumentNotValidException e, HttpServletRequest request){
