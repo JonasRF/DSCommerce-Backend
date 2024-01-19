@@ -57,6 +57,10 @@ O escopo funcional do sistema consiste nos seguintes casos de uso:
 
 ![image](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/6f23cc74-c821-4549-ba1a-4bd5d7991e37)
 
+![image](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/c67932be-4e1a-4a28-825c-5fde57b13677)
+
+
+![image](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/cf989039-1eed-43d0-bb3d-af319af5e622)
 
 
 
