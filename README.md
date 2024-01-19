@@ -1,15 +1,34 @@
 Projeto DSCommerce
 
-![Captura de tela 09](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/464e6122-d16f-4ad4-9648-955a1d0b1a87)
+1. Premissas
+Deseja-se fazer um sistema para ser utilizado em cursos da Devsuperior no processo de
+aprendizado dos alunos. Para isto, a concepção do sistema partiu das seguintes
+premissas:
+- Deve ser um sistema que possua um modelo de domínio relativamente simples,
+porém abrangente, ou seja, que explore vários tipos de relacionamentos entre as
+entidades de negócio (muitos-para-um, muitos-para-muitos, etc.).
+- O sistema deve possibilitar a aplicação de vários conhecimentos importantes das
+disciplinas de fundamentos.
+- O sistema deve conter as principais funcionalidades que se espera de um
+profissional iniciante deve saber construir, tais como telas de cadastro e fluxos de
+caso de uso.
 
-
-![Captura de tela 2024-01-06 084455](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/4fca7824-326c-4c2b-8d24-59d0cf5949fc)
-
-![Captura de tela 01](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/359b2074-c239-4381-ad74-06f2f7d9cd4c)
-]![Captura de tela 02](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/880da280-cb41-498a-9508-dab4afb7e05f)
-![Captura de tela 03](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/987c1a1d-87e2-445c-a52a-66e1660d62e2)
-![Captura de tela 04](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/a2c4d61f-2cde-4420-a06b-7ad4386604ea)
-![Captura de tela 05](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/4fba201a-d00a-484b-b2b8-356343f1b9d6)
-![Captura de tela 06](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/1c7afb10-72a7-49f1-b0d3-8eb8955483ff)
-![Captura de tela 07](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/087af4bc-ed8c-4fba-941c-b0e590c7183c)
-![Captura de tela 08](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/a33af63c-693f-4ffb-92a8-d7a0ab14fc8f)
+2. Visão geral do sistema
+O sistema deve manter um cadastro de usuário, produtos e suas categorias. Cada
+usuário possui nome, email, telefone, data de nascimento e uma senha de acesso. Os
+dados dos produtos são: nome, descrição, preço e imagem. O sistema deve apresentar
+um catálogo de produtos, os quais podem ser filtrados pelo nome do produto. A partir
+desse catálogo, o usuário pode selecionar um produto para ver seus detalhes e para
+decidir se o adiciona a um carrinho de compras. O usuário pode incluir e remover itens
+do carrinho de compra, bem como alterar as quantidades de cada item. Uma vez que o
+usuário decida encerrar o pedido, o pedido deve então ser salvo no sistema com o status
+de "aguardando pagamento". Os dados de um pedido são: instante em que ele foi salvo,
+status, e uma lista de itens, onde cada item se refere a um produto e sua quantidade no
+pedido. O status de um pedido pode ser: aguardando pagamento, pago, enviado,
+entregue e cancelado. Quando o usuário paga por um pedido, o instante do pagamento
+deve ser registrado. Os usuários do sistema podem ser clientes ou administradores,
+sendo que todo usuário cadastrado por padrão é cliente. Usuários não identificados
+podem se cadastrar no sistema, navegar no catálogo de produtos e no carrinho de
+compras. Clientes podem atualizar seu cadastro no sistema, registrar pedidos e visualizar
+seus próprios pedidos. Usuários administradores tem acesso à área administrativa onde
+pode acessar os cadastros de usuários, produtos e categorias.
