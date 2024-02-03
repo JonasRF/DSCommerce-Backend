@@ -1,6 +1,7 @@
 package com.devsuperior.DSCommerce.controllers;
 
 import com.devsuperior.DSCommerce.DTO.EmailDTO;
+import com.devsuperior.DSCommerce.DTO.NewPasswordDTO;
 import com.devsuperior.DSCommerce.DTO.UserDTO;
 import com.devsuperior.DSCommerce.services.AuthService;
 import jakarta.validation.Valid;
@@ -18,6 +19,12 @@ public class AuthController {
     @PostMapping(value = "/recover-token")
     public ResponseEntity<UserDTO> createRecoverToken(@Valid @RequestBody EmailDTO body) {
          authService.createRecoverToken(body);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping(value = "/new-password")
+    public ResponseEntity<UserDTO> saveNewPassword(@Valid @RequestBody NewPasswordDTO body) {
+        authService.saveNewPassword(body);
         return ResponseEntity.noContent().build();
     }
 }

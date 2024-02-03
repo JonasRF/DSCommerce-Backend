@@ -43,8 +43,8 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("User not found");
         }
         User user = new User();
-        user.setEmail(result.get(0).getUsername());
-        user.setPassword(result.get(0).getPassword());
+        user.setEmail(result.getFirst().getUsername());
+        user.setPassword(result.getFirst().getPassword());
         for (UserDetailsProjection projection : result) {
             user.addRole(new Role(projection.getRoleId(), projection.getAuthority()));
         }
@@ -55,7 +55,7 @@ public class UserService implements UserDetailsService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Jwt jwtPrincipal = (Jwt) authentication.getPrincipal();
         String username = jwtPrincipal.getClaim("username");
-        return repository.findByEmail(username).get();
+        return repository.findByEmail(username);
     }
 
     @Transactional(readOnly = true)
