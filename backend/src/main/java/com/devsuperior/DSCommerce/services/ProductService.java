@@ -31,17 +31,17 @@ public class ProductService {
     private CategoryRepository categoryRepository;
 
     @Transactional(readOnly = true)
-    public Page<ProductMinDTO> findAll( String name, Pageable pageable) {
-        Page<Product> result = repository.searchByName(name, pageable);
-        return result.map(x -> new ProductMinDTO(x));
-    }
-
-    @Transactional(readOnly = true)
     public ProductDTO FindById(Long id){
-       Optional<Product> obj =  repository.findById(id);
-       Product entity = obj.orElseThrow(() -> new ResourceNotFoundException("Resource not found!"));
+        Optional<Product> obj =  repository.findById(id);
+        Product entity = obj.orElseThrow(() -> new ResourceNotFoundException("Resource not found!"));
         return new ProductDTO(entity);
     }
+    @Transactional(readOnly = true)
+    public Page<ProductMinDTO> findAll( String name, Pageable pageable) {
+        Page<Product> result = repository.searchByName(name, pageable);
+        return result.map(ProductMinDTO::new);
+    }
+
     @Transactional
     public ProductDTO insert(ProductDTO dto) {
 
