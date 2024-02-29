@@ -78,7 +78,6 @@ public class AuthService {
         if(result.isEmpty()){
             throw new ResourceNotFoundException("token invalido");
         }
-
         User user = userRepository.findByEmail(result.getFirst().getEmail());
         user.setPassword(passwordEncoder.encode(body.password()));
         user = userRepository.save(user);
