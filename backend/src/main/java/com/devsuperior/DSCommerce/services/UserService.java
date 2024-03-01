@@ -9,14 +9,12 @@ import com.devsuperior.DSCommerce.projections.UserDetailsProjection;
 import com.devsuperior.DSCommerce.repositories.RoleRepository;
 import com.devsuperior.DSCommerce.repositories.UserRepository;
 import com.devsuperior.DSCommerce.services.exceptions.ResourceNotFoundException;
+import com.devsuperior.DSCommerce.util.CustomUserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,6 +33,9 @@ public class UserService implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private CustomUserUtil customUserUtil;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -52,10 +53,13 @@ public class UserService implements UserDetailsService {
     }
 
     protected User authenticated() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Jwt jwtPrincipal = (Jwt) authentication.getPrincipal();
-        String username = jwtPrincipal.getClaim("username");
-        return repository.findByEmail(username);
+        try{
+            String username = customUserUtil.getLoggedUsername();
+            return repository.findByEmail(username);
+        }
+        catch (Exception e){
+            throw new UsernameNotFoundException("Invalid user");
+        }
     }
 
     @Transactional(readOnly = true)
