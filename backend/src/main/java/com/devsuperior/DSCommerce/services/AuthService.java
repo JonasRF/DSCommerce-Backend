@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -45,7 +44,11 @@ public class AuthService {
 
     public void validateSelfOrAdmin(long userId){
         User user = userService.authenticated();
-        if(!user.hasRole("ROLE_ADMIN") && !user.getId().equals(userId)){
+
+        if(user.hasRole("ROLE_ADMIN")) {
+            return;
+        }
+        if(!user.getId().equals(userId)){
             throw new ForbiddenException("Access denied");
         }
     }
