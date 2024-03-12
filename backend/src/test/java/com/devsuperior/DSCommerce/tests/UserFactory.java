@@ -26,7 +26,7 @@ public class UserFactory {
     }
 
     public static User createCustomAdminUser(Long id, String name) {
-        User user = new User(2L, name, "alex@gmail.com", "977777777", LocalDate.parse("1987-12-13"), "$2a$10$CER3Frba2cEhnkAuDMng7OS0jkElywv180cKOdGci5QuFOBFliB46");
+        User user = new User(id, name, "alex@gmail.com", "977777777", LocalDate.parse("1987-12-13"), "$2a$10$CER3Frba2cEhnkAuDMng7OS0jkElywv180cKOdGci5QuFOBFliB46");
         user.addRole(new Role(2L, "ROLE_ADMIN"));
         return user;
     }

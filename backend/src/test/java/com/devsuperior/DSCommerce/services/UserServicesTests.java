@@ -35,7 +35,7 @@ public class UserServicesTests {
     private User user;
     private List<UserDetailsProjection> userDetails;
     @BeforeEach
-    void setUp() {
+    void setUp() throws Exception {
         existingUserName = "alex@gmail.com";
         nonExistingUserName = "user@gmail.com";
 

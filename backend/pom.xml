@@ -94,6 +94,8 @@
 						<exclude>com/devsuperior/DSCommerce/controllers/handlers/**</exclude>
 						<exclude>com/devsuperior/DSCommerce/services/exceptions/**</exclude>
 						<exclude>com/devsuperior/DSCommerce/services/validation/**</exclude>
+						<exclude>com/devsuperior/DSCommerce/util/**</exclude>
+						<exclude>com/devsuperior/DSCommerce/controllers/**</exclude>
 					</excludes>
 				</configuration>
 				<executions>

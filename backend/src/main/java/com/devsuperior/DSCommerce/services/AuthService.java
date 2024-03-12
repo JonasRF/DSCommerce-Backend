@@ -42,7 +42,7 @@ public class AuthService {
     @Autowired
     private EmailService emailService;
 
-    public void validateSelfOrAdmin(long userId){
+    public void validateSelfOrAdmin(Long userId){
         User user = userService.authenticated();
 
         if(user.hasRole("ROLE_ADMIN")) {
