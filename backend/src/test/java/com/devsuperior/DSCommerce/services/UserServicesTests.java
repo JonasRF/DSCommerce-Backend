@@ -19,6 +19,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 
@@ -32,15 +33,24 @@ public class UserServicesTests {
     @Mock
     private CustomUserUtil customUserUtil;
     private String existingUserName, nonExistingUserName;
-    private User user;
+    private long existingId, nonExistingId;
+    private User user, username;
+    private UserDTO userDTO;
     private List<UserDetailsProjection> userDetails;
     @BeforeEach
     void setUp() throws Exception {
+        existingId = 1L;
+        nonExistingId = 2L;
         existingUserName = "alex@gmail.com";
         nonExistingUserName = "user@gmail.com";
 
         user = UserFactory.createCustomAdminUser(1L, existingUserName);
+        username = UserFactory.createClientUser();
         userDetails = UserDetailsFactory.createCustomAdminUser(existingUserName);
+
+        userDTO = new UserDTO(user);
+
+        when(userRepository.findById(existingId)).thenReturn(Optional.ofNullable(username));
 
         when(userRepository.searchUserAndRolesByEmail(existingUserName)).thenReturn(userDetails);
         when(userRepository.searchUserAndRolesByEmail(nonExistingUserName)).thenReturn(new ArrayList<>());
@@ -49,6 +59,14 @@ public class UserServicesTests {
         when(userRepository.findByEmail(nonExistingUserName)).thenThrow(UsernameNotFoundException.class);
     }
 
+    @Test
+    public void findByIdShouldReturnProductDTOWhenIdExists() {
+        UserDTO result = userService.findById(existingId);
+
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(result.getId(), existingId);
+        Assertions.assertEquals(result.getName(), username.getName());
+    }
     @Test
     public void loadUserByUserNameShouldReturnUserDetailsWhenUserExists() {
 
