@@ -4,6 +4,7 @@ import com.devsuperior.DSCommerce.DTO.UserDTO;
 import com.devsuperior.DSCommerce.entities.User;
 import com.devsuperior.DSCommerce.projections.UserDetailsProjection;
 import com.devsuperior.DSCommerce.repositories.UserRepository;
+import com.devsuperior.DSCommerce.services.exceptions.ResourceNotFoundException;
 import com.devsuperior.DSCommerce.tests.UserDetailsFactory;
 import com.devsuperior.DSCommerce.tests.UserFactory;
 import com.devsuperior.DSCommerce.util.CustomUserUtil;
@@ -51,6 +52,8 @@ public class UserServicesTests {
         userDTO = new UserDTO(user);
 
         when(userRepository.findById(existingId)).thenReturn(Optional.ofNullable(username));
+        when(userRepository.findById(nonExistingId)).thenThrow(ResourceNotFoundException.class);
+
 
         when(userRepository.searchUserAndRolesByEmail(existingUserName)).thenReturn(userDetails);
         when(userRepository.searchUserAndRolesByEmail(nonExistingUserName)).thenReturn(new ArrayList<>());
@@ -60,13 +63,22 @@ public class UserServicesTests {
     }
 
     @Test
-    public void findByIdShouldReturnProductDTOWhenIdExists() {
+    public void findByIdShouldReturnUserDTOWhenIdExists() {
         UserDTO result = userService.findById(existingId);
 
         Assertions.assertNotNull(result);
         Assertions.assertEquals(result.getId(), existingId);
         Assertions.assertEquals(result.getName(), username.getName());
     }
+
+    @Test
+    public void findByIdShouldReturnResourceNotFoundExceptionWhenIdNonExistingId() {
+
+        Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+            userService.findById(nonExistingId);
+        });
+    }
+
     @Test
     public void loadUserByUserNameShouldReturnUserDetailsWhenUserExists() {
 
