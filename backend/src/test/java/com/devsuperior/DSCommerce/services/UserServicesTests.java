@@ -52,7 +52,7 @@ public class UserServicesTests {
         userDTO = new UserDTO(user);
 
         when(userRepository.findById(existingId)).thenReturn(Optional.ofNullable(username));
-        when(userRepository.findById(nonExistingId)).thenThrow(ResourceNotFoundException.class);
+        when(userRepository.findById(nonExistingId)).thenReturn(Optional.empty());
 
 
         when(userRepository.searchUserAndRolesByEmail(existingUserName)).thenReturn(userDetails);

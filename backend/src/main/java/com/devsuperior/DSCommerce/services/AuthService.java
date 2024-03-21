@@ -54,7 +54,7 @@ public class AuthService {
     }
 
     @Transactional
-    public void createRecoverToken(EmailDTO body) {
+    public EmailDTO createRecoverToken(EmailDTO body) {
 
         User user = userRepository.findByEmail(body.email());
         if(user == null){
@@ -73,6 +73,7 @@ public class AuthService {
                 + recoverURI + token + ". Validade de "+ tokenMinutes + " minutos.";
 
         emailService.sendEmail(body.email(), "Recuperação de senha", text);
+        return body;
     }
 
     @Transactional

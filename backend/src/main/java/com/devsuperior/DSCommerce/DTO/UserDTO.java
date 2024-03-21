@@ -39,6 +39,8 @@ public class UserDTO implements Serializable {
 	public UserDTO() {
 	}
 
+
+
 	public Long getId() {
 		return id;
 	}

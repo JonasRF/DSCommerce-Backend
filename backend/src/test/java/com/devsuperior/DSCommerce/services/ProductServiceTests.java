@@ -43,7 +43,7 @@ public class ProductServiceTests {
     @BeforeEach
     void setUp() throws Exception{
         existingId = 1L;
-        nonExistingId = 2L;
+        nonExistingId = 100L;
         dependentyId = 3L;
         productName = "the Rings";
 
@@ -52,7 +52,7 @@ public class ProductServiceTests {
         page = new PageImpl<>(List.of(product));
 
         when(repository.findById(existingId)).thenReturn(Optional.ofNullable(product));
-        when(repository.findById(nonExistingId)).thenThrow(ResourceNotFoundException.class);
+        when(repository.findById(nonExistingId)).thenReturn(Optional.empty());
 
         when(repository.getReferenceById(existingId)).thenReturn(product);
         when(repository.getReferenceById(nonExistingId)).thenThrow(EntityNotFoundException.class);
