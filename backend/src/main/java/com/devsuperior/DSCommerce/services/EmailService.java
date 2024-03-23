@@ -17,7 +17,7 @@ public class EmailService {
     @Autowired
     private JavaMailSender emailSender;
 
-    public Object sendEmail(String to, String subject, String body) {
+    public void sendEmail(String to, String subject, String body) {
         try{
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom(emailFrom);
@@ -29,6 +29,5 @@ public class EmailService {
         catch (MailException e){
         	throw new EmailException("Failed to send email");
         }
-        return null;
     }
 }

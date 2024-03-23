@@ -25,6 +25,12 @@ public class UserFactory {
         return user;
     }
 
+    public static User createCustomClientUser01(Long id, String name) {
+        User user = new User(id, name, "jonasflajo@gmail.com", "979797777", LocalDate.parse("1991-12-05"), "$2a$10$CER3Frba2cEhnkAuDMng7OS0jkElywv180cKOdGci5QuFOBFliB46");
+        user.addRole(new Role(1L, "ROLE_CLIENT"));
+        return user;
+    }
+
     public static User createCustomAdminUser(Long id, String name) {
         User user = new User(id, name, "alex@gmail.com", "977777777", LocalDate.parse("1987-12-13"), "$2a$10$CER3Frba2cEhnkAuDMng7OS0jkElywv180cKOdGci5QuFOBFliB46");
         user.addRole(new Role(2L, "ROLE_ADMIN"));
