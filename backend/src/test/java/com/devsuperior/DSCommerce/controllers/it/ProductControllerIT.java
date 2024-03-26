@@ -107,7 +107,7 @@ public class ProductControllerIT {
     }
 
     @Test
-    public void insertShouldReturnUnprocessableEntityWhenAdminLoggedInvalidName() throws Exception {
+    public void insertShouldReturnUnProcessableEntityWhenAdminLoggedInvalidName() throws Exception {
 
         product.setName("ab");
         productDTO = new ProductDTO(product);
@@ -125,7 +125,7 @@ public class ProductControllerIT {
     }
 
     @Test
-    public void insertShouldReturnUnprocessableEntityWhenAdminLoggedAndInvalidDescription() throws Exception {
+    public void insertShouldReturnUnProcessableEntityWhenAdminLoggedAndInvalidDescription() throws Exception {
 
         product.setDescription("asd");
         productDTO = new ProductDTO(product);
@@ -143,7 +143,7 @@ public class ProductControllerIT {
     }
 
     @Test
-    public void insertShouldReturnUnprocessableEntityWhenAdminLoggedAndPriceIsNegative() throws Exception {
+    public void insertShouldReturnUnProcessableEntityWhenAdminLoggedAndPriceIsNegative() throws Exception {
 
         product.setPrice(-50.0);
         productDTO = new ProductDTO(product);
@@ -161,7 +161,7 @@ public class ProductControllerIT {
     }
 
     @Test
-    public void insertShouldReturnUnprocessableEntityWhenAdminLoggedAndPriceIsZero() throws Exception {
+    public void insertShouldReturnUnProcessableEntityWhenAdminLoggedAndPriceIsZero() throws Exception {
 
         product.setPrice(0.0);
         productDTO = new ProductDTO(product);
@@ -179,7 +179,7 @@ public class ProductControllerIT {
     }
 
     @Test
-    public void insertShouldReturnUnprocessableEntityWhenAdminLoggedAndProductHasNowCategory() throws Exception {
+    public void insertShouldReturnUnProcessableEntityWhenAdminLoggedAndProductHasNowCategory() throws Exception {
 
         product.getCategories().clear();
         productDTO = new ProductDTO(product);
