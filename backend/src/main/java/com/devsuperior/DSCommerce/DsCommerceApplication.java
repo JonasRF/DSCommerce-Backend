@@ -1,15 +1,24 @@
 package com.devsuperior.DSCommerce;
 
+import com.devsuperior.DSCommerce.services.S3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
-public class DsCommerceApplication {
+public class DsCommerceApplication implements CommandLineRunner{
+
+	@Autowired
+	private S3Service s3Service;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DsCommerceApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+
+		s3Service.uploadFile("C:\\Users\\jonas\\Desktop\\temp\\image.jpg");
 	}
 }
