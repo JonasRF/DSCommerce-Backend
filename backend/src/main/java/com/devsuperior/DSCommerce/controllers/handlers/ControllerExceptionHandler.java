@@ -1,5 +1,7 @@
 package com.devsuperior.DSCommerce.controllers.handlers;
 
+import com.amazonaws.AmazonClientException;
+import com.amazonaws.AmazonServiceException;
 import com.devsuperior.DSCommerce.DTO.CustomError;
 import com.devsuperior.DSCommerce.DTO.ValidationError;
 import com.devsuperior.DSCommerce.services.exceptions.DataBaseException;
@@ -55,6 +57,27 @@ public class ControllerExceptionHandler {
     public ResponseEntity<CustomError> forbidden(ForbiddenException e, HttpServletRequest request){
         HttpStatus status = HttpStatus.FORBIDDEN;
         CustomError err = new CustomError(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(err);
+    }
+
+    @ExceptionHandler(AmazonServiceException.class)
+    public ResponseEntity<CustomError> amazonService(AmazonServiceException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        CustomError err = new CustomError(Instant.now(), status.value(), "AWS Exception", request.getRequestURI());
+        return ResponseEntity.status(status).body(err);
+    }
+
+    @ExceptionHandler(AmazonClientException .class)
+    public ResponseEntity<CustomError> amazonClient(AmazonClientException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        CustomError err = new CustomError(Instant.now(), status.value(), "AWS Exception", request.getRequestURI());
+        return ResponseEntity.status(status).body(err);
+    }
+
+    @ExceptionHandler(IllegalArgumentException .class)
+    public ResponseEntity<CustomError> illegalArgument(IllegalArgumentException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        CustomError err = new CustomError(Instant.now(), status.value(), "Bad Request", request.getRequestURI());
         return ResponseEntity.status(status).body(err);
     }
 }
