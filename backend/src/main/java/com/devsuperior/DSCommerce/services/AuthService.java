@@ -1,7 +1,7 @@
 package com.devsuperior.DSCommerce.services;
 
-import com.devsuperior.DSCommerce.DTO.EmailDTO;
 import com.devsuperior.DSCommerce.DTO.NewPasswordDTO;
+import com.devsuperior.DSCommerce.DTO.PasswordEncoderDTO;
 import com.devsuperior.DSCommerce.entities.PasswordRecover;
 import com.devsuperior.DSCommerce.entities.User;
 import com.devsuperior.DSCommerce.repositories.PasswordRecoverRepository;
@@ -54,9 +54,9 @@ public class AuthService {
     }
 
     @Transactional
-    public void createRecoverToken(EmailDTO body) {
+    public PasswordEncoderDTO createRecoverToken(PasswordEncoderDTO body) {
 
-        User user = userRepository.findByEmail(body.email());
+        User user = userRepository.findByEmail(body.getEmail());
         if(user == null){
             throw  new ResourceNotFoundException("Email não encontrado!");
         }
@@ -64,7 +64,7 @@ public class AuthService {
         String token = UUID.randomUUID().toString();
 
         PasswordRecover entity = new PasswordRecover();
-        entity.setEmail(body.email());
+        entity.setEmail(body.getEmail());
         entity.setToken(token);
         entity.setExpiration(Instant.now().plusSeconds(tokenMinutes * 60L));
         entity = passwordRecoverRepository.save(entity);
@@ -72,7 +72,8 @@ public class AuthService {
         String text = "Acesse o link para definir uma nova senha\n\n"
                 + recoverURI + token + ". Validade de "+ tokenMinutes + " minutos.";
 
-        emailService.sendEmail(body.email(), "Recuperação de senha", text);
+        emailService.sendEmail(body.getEmail(), "Recuperação de senha", text);
+        return new PasswordEncoderDTO(entity);
     }
 
     @Transactional
