@@ -54,7 +54,7 @@ public class AuthService {
     }
 
     @Transactional
-    public PasswordEncoderDTO createRecoverToken(PasswordEncoderDTO body) {
+    public void createRecoverToken(PasswordEncoderDTO body) {
 
         User user = userRepository.findByEmail(body.getEmail());
         if(user == null){
@@ -73,7 +73,6 @@ public class AuthService {
                 + recoverURI + token + ". Validade de "+ tokenMinutes + " minutos.";
 
         emailService.sendEmail(body.getEmail(), "Recuperação de senha", text);
-        return new PasswordEncoderDTO(entity);
     }
 
     @Transactional

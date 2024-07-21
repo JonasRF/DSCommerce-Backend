@@ -18,8 +18,8 @@ public class AuthController {
 
     @PostMapping(value = "/recover-token")
     public ResponseEntity<PasswordEncoderDTO> createRecoverToken(@Valid @RequestBody PasswordEncoderDTO body) {
-         PasswordEncoderDTO dto = authService.createRecoverToken(body);
-        return ResponseEntity.ok().body(dto);
+          authService.createRecoverToken(body);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping(value = "/new-password")
