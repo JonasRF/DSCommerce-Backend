@@ -1,6 +1,7 @@
 package com.devsuperior.DSCommerce.controllers;
 
 import com.devsuperior.DSCommerce.DTO.OrderDTO;
+import com.devsuperior.DSCommerce.DTO.OrderDTOUser;
 import com.devsuperior.DSCommerce.DTO.ProductDTO;
 import com.devsuperior.DSCommerce.DTO.ProductMinDTO;
 import com.devsuperior.DSCommerce.services.OrderService;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/orders")
@@ -22,11 +24,26 @@ public class OrderController {
 
     @Autowired
     private OrderService service;
+
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<OrderDTO> findById(@PathVariable Long id) {
             OrderDTO dto = service.findById(id);
             return ResponseEntity.ok().body(dto);
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @GetMapping
+    public ResponseEntity<List<OrderDTO>> findAll() {
+        List<OrderDTO> dto = service.findAll();
+        return ResponseEntity.ok().body(dto);
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
+    @GetMapping(value = "/{teste}/{orderUser}")
+    public ResponseEntity<List<OrderDTOUser>> findAllOrderWithUser() {
+        List<OrderDTOUser> dto = service.findAllOrderWithUser();
+        return ResponseEntity.ok().body(dto);
     }
 
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
