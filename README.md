@@ -1,7 +1,7 @@
 Projeto DSCommerce
 
 1. Premissas
-Deseja-se fazer um sistema para ser utilizado em cursos da Devsuperior no processo de
+ Deseja-se fazer um sistema para ser utilizado em cursos da Devsuperior no processo de
 aprendizado dos alunos. Para isto, a concepção do sistema partiu das seguintes
 premissas:
 - Deve ser um sistema que possua um modelo de domínio relativamente simples,
@@ -14,7 +14,7 @@ profissional iniciante deve saber construir, tais como telas de cadastro e fluxo
 caso de uso.
 
 2. Visão geral do sistema
-O sistema deve manter um cadastro de usuário, produtos e suas categorias. Cada
+ O sistema deve manter um cadastro de usuário, produtos e suas categorias. Cada
 usuário possui nome, email, telefone, data de nascimento e uma senha de acesso. Os
 dados dos produtos são: nome, descrição, preço e imagem. O sistema deve apresentar
 um catálogo de produtos, os quais podem ser filtrados pelo nome do produto. A partir
