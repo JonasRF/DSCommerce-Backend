@@ -13,8 +13,8 @@ disciplinas de fundamentos.
 profissional iniciante deve saber construir, tais como telas de cadastro e fluxos de
 caso de uso.
 
-2. Visão geral do sistema
-  O sistema deve manter um cadastro de usuário, produtos e suas categorias. Cada
+2. Visão geral do sistema \
+O sistema deve manter um cadastro de usuário, produtos e suas categorias. Cada
 usuário possui nome, email, telefone, data de nascimento e uma senha de acesso. Os
 dados dos produtos são: nome, descrição, preço e imagem. O sistema deve apresentar
 um catálogo de produtos, os quais podem ser filtrados pelo nome do produto. A partir
@@ -33,10 +33,10 @@ compras. Clientes podem atualizar seu cadastro no sistema, registrar pedidos e v
 seus próprios pedidos. Usuários administradores tem acesso à área administrativa onde
 pode acessar os cadastros de usuários, produtos e categorias.
 
-3. Protótipos de tela:
+3. Protótipos de tela: \
 https://www.figma.com/file/ZrGNVNG0kZL6txDv4G8P6s/DSCommerce
 
-4. Modelo conceitual
+4. Modelo conceitual \
 Este é o modelo conceitual do sistema DSCommerce. Considerações:
 - Cada item de pedido (OrderItem) corresponde a um produto no pedido, com uma
 quantidade. Sendo que o preço também é armazenado no item de pedido por
@@ -47,7 +47,7 @@ no sistema (client, admin).
 
 ![image](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/1da9a5a0-624f-4b76-ab80-53480ba04d86)
 
-5. Casos de uso (visão geral)
+5. Casos de uso (visão geral) \
 O escopo funcional do sistema consiste nos seguintes casos de uso:
 
 ![image](https://github.com/JonasRF/DSCommerce-Backend/assets/77034798/31011da7-7d9e-4868-a110-64bf3b19ea9a)
