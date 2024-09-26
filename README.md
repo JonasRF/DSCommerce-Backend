@@ -1,7 +1,7 @@
 Projeto DSCommerce
 
-1. Premissas
-  Deseja-se fazer um sistema para ser utilizado em cursos da Devsuperior no processo de
+1. Premissas \
+Deseja-se fazer um sistema para ser utilizado em cursos da Devsuperior no processo de
 aprendizado dos alunos. Para isto, a concepção do sistema partiu das seguintes
 premissas:
 - Deve ser um sistema que possua um modelo de domínio relativamente simples,
