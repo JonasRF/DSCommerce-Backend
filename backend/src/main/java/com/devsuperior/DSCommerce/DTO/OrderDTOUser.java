@@ -1,10 +1,6 @@
 package com.devsuperior.DSCommerce.DTO;
 
-import com.devsuperior.DSCommerce.entities.Order;
-import com.devsuperior.DSCommerce.entities.OrderItem;
-import com.devsuperior.DSCommerce.entities.OrderStatus;
 import com.devsuperior.DSCommerce.projections.OrderProjection;
-
 import java.time.Instant;
 
 public class OrderDTOUser {

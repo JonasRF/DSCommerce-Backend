@@ -40,7 +40,7 @@ public class OrderController {
     }
 
     @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
-    @GetMapping(value = "/{teste}/{orderUser}")
+    @GetMapping(value = "/{order}/{orderByUser}")
     public ResponseEntity<List<OrderDTOUser>> findAllOrderWithUser() {
         List<OrderDTOUser> dto = service.findAllOrderWithUser();
         return ResponseEntity.ok().body(dto);

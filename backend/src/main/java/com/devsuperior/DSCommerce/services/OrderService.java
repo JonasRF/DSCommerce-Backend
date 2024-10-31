@@ -57,12 +57,9 @@ public class OrderService {
 
     @Transactional(readOnly = true)
     public List<OrderDTOUser> findAllOrderWithUser() {
-
         User user = userService.authenticated();
         List<OrderProjection> list = repository.findAllOrderToUser(user.getId());
-
         return list.stream().map(OrderDTOUser::new).collect(Collectors.toList());
-
     }
 
     @Transactional
