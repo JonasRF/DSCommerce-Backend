@@ -41,6 +41,15 @@ public class User implements UserDetails {
         this.password = password;
     }
 
+    public User(User client) {
+        this.id = client.getId();
+        this.name = client.getName();
+        this.email = client.getEmail();
+        this.phone = client.getPhone();
+        this.birthDate = client.getBirthDate();
+        this.password = client.getPassword();
+    }
+
     public Long getId() {
         return id;
     }

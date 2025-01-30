@@ -1,5 +1,7 @@
 package com.devsuperior.DSCommerce.entities;
 
+import com.devsuperior.DSCommerce.DTO.PaymentDTO;
+import com.devsuperior.DSCommerce.DTO.UserDTO;
 import jakarta.persistence.*;
 
 import java.time.Instant;

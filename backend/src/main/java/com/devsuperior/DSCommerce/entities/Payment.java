@@ -28,6 +28,12 @@ public class Payment {
         this.order = order;
     }
 
+    public Payment(Payment payment) {
+        this.id = payment.getId();
+        this.moment = payment.getMoment();
+        this.order = payment.getOrder();
+    }
+
     public Long getId() {
         return id;
     }
