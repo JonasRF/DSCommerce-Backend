@@ -25,7 +25,7 @@ public class OrderController {
     @Autowired
     private OrderService service;
 
-    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_CLIENT', 'ROLE_ADMIN')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<OrderDTO> findById(@PathVariable Long id) {
             OrderDTO dto = service.findById(id);
@@ -39,14 +39,14 @@ public class OrderController {
         return ResponseEntity.ok().body(dto);
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_CLIENT', 'ROLE_EMPLOYEE', 'ROLE_ADMIN')")
     @GetMapping(value = "/{order}/{orderByUser}")
     public ResponseEntity<List<OrderDTOUser>> findAllOrderWithUser() {
         List<OrderDTOUser> dto = service.findAllOrderWithUser();
         return ResponseEntity.ok().body(dto);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_EMPLOYEE')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<OrderDTO> update(@PathVariable Long id, @Valid @RequestBody OrderDTO dto) {
         dto = service.update(id, dto);

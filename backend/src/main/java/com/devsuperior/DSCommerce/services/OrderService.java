@@ -76,7 +76,6 @@ public class OrderService {
     private void copyDtoToEntity(OrderDTO dto, Order entity) {
         entity.setMoment(dto.getMoment());
         entity.setStatus(dto.getStatus());
-        entity.setPayment(new Payment(entity.getPayment()));
         entity.setClient(new User(entity.getClient()));
 
         entity.getItems().clear();

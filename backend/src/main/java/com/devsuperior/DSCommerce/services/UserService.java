@@ -10,16 +10,23 @@ import com.devsuperior.DSCommerce.repositories.RoleRepository;
 import com.devsuperior.DSCommerce.repositories.UserRepository;
 import com.devsuperior.DSCommerce.services.exceptions.ResourceNotFoundException;
 import com.devsuperior.DSCommerce.util.CustomUserUtil;
+import jakarta.persistence.EntityNotFoundException;
+import org.apache.logging.log4j.message.StringFormattedMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.server.authorization.web.authentication.PublicClientAuthenticationConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -63,6 +70,12 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional(readOnly = true)
+    public Page<UserDTO> findAllPaged(String name, Pageable pageable) {
+        Page<User> list = repository.searchByName(name, pageable);
+        return list.map(UserDTO::new);
+    }
+
+    @Transactional(readOnly = true)
     public UserDTO getMe() {
         User user = authenticated();
         return new UserDTO(user);
@@ -73,6 +86,18 @@ public class UserService implements UserDetailsService {
         Optional<User> obj = repository.findById(id);
         User user = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
         return new UserDTO(user);
+    }
+
+    @Transactional
+    public UserDTO update(Long id, UserDTO dto) {
+        try {
+            User entity = repository.getReferenceById(id);
+            copyDtoToEntity(dto, entity);
+            entity = repository.save(entity);
+            return new UserDTO(entity);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException("Id not found " + id);
+        }
     }
 
     @Transactional
