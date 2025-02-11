@@ -1,5 +1,6 @@
 package com.devsuperior.DSCommerce.DTO;
 
+import com.devsuperior.DSCommerce.entities.Role;
 import com.devsuperior.DSCommerce.entities.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -62,5 +63,4 @@ public class UserDTO implements Serializable {
 	public Set<RoleDTO> getRoles() {
 		return roles;
 	}
-
 }

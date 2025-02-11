@@ -42,16 +42,16 @@ public class AuthService {
     @Autowired
     private EmailService emailService;
 
-    public void validateSelfOrAdmin(Long userId){
+    public void validateSelfOrAdmin(Long userId) {
         User user = userService.authenticated();
 
-        if(user.hasRole("ROLE_ADMIN")) {
-            return;
+        if (user.hasRole("ROLE_ADMIN", "ROLE_EMPLOYEE")) {
+                return;
+            }
+            if (!user.getId().equals(userId)) {
+                throw new ForbiddenException("Access denied");
+            }
         }
-        if(!user.getId().equals(userId)){
-            throw new ForbiddenException("Access denied");
-        }
-    }
 
     @Transactional
     public PasswordEncoderDTO createRecoverToken(PasswordEncoderDTO body) {

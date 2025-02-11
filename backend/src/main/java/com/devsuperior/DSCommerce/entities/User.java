@@ -110,9 +110,9 @@ public class User implements UserDetails {
         roles.add(role);
     }
 
-    public boolean hasRole(String roleName) {
+    public boolean hasRole(String roleName01, String roleName02) {
         for (Role role : roles) {
-            if (role.getAuthority().equals(roleName)) {
+            if (role.getAuthority().equals(roleName01) || role.getAuthority().equals(roleName02)) {
                 return true;
             }
         }
